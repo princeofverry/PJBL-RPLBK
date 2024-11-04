@@ -3,6 +3,7 @@
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
+import { Loader2 } from 'lucide-react';
 
 const Newest = () => {
     const [newsData, setNewsData] = useState([]);
@@ -26,34 +27,49 @@ const Newest = () => {
         fetchNews();
     }, []);
     
-    if (loading) return <p className='text-center'>loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return (
+      <div className="flex items-center justify-center p-8">
+        <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
+      </div>
+    );
+    if (error) return <p className="text-red-600 p-4">{error}</p>;
 
     return (
-        <div className=''>
-            <h1 className='font-bold text-center text-3xl mb-4'>Latest News</h1>
-            <ul>
+        <div className='max-w-6xl mx-auto px-4'>
+            <h1 className='font-bold text-center text-3xl mb-8'>Latest News</h1>
+            <div className="grid gap-8">
                 {newsData.slice(0, 1).map((news, index) => (
-                    <li key={index} className="mb-4 h-full w-1/2 mx-auto border border-gray-400 p-4">
-                        <div className='flex flex-row'>
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">{news.title}</h2>
-                                <p className="text-gray-600">{new Date(news.pubDate).toLocaleString()}</p>
+                    <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div className='grid md:grid-cols-2 gap-6 p-6'>
+                            <div className="space-y-4">
+                                <h2 className="text-2xl font-semibold">{news.title}</h2>
+                                <p className="text-gray-600 text-sm">{new Date(news.pubDate).toLocaleString()}</p>
                                 <p className="text-gray-800">{news.description}</p>
-                            </div>
-                        <div>
-                                <a href={news.link} target="_blank" rel="noopener noreferrer">
-                                    <div className='relative max-w-6xl overflow-hidden bg-cover bg-no-repeat'>
-                                        <Image width={800} height={400} src={news.thumbnail} alt={news.title} className=" object-cover mb-2  transition duration-300 ease-in-out hover:scale-105" />
-                                    </div>
+                                <a 
+                                  href={news.link} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="inline-block px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                                >
+                                  Read More
                                 </a>
+                            </div>
+                            <div className="relative h-[300px]">
+                                <a href={news.link} target="_blank" rel="noopener noreferrer">
+                                    <Image
+                                        fill
+                                        src={news.thumbnail}
+                                        alt={news.title}
+                                        className="object-cover rounded-lg transition duration-300 ease-in-out hover:scale-105"
+                                    />
+                                </a>
+                            </div>
                         </div>
-                        </div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
 
-export default Newest
+export default Newest;
