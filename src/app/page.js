@@ -1,6 +1,6 @@
-import Newest from "./components/Newest";
-import Data from "./data/Data";
 import GoldPrice from "./components/GoldPrice";
+import Newest from "./components/newest";
+import Data from "./data/data";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         {/* Gold Price Section */}
         <section className="mb-12">
           <GoldPrice />
-        </section> 
+        </section>
         {/* Latest News Section */}
         <section className="mb-12">
           <Newest />
