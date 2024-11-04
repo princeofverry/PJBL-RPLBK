@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["akcdn.detik.net.id", "klimg.com"], // Add the allowed hostname here
+    domains: ["akcdn.detik.net.id", "klimg.com", "images.remotePatterns"], // Add the allowed hostname here
   },
 };
 
