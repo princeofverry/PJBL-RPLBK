@@ -12,7 +12,7 @@ export default function Home() {
           <GoldPrice />
         </section>
 
-        <section className="flex justify-center mb-12">
+        <section className="flex md:flex-row flex-col justify-center mb-12">
           <Newest />
           <Weather />
         </section>
