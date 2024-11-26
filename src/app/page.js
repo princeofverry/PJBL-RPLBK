@@ -1,5 +1,6 @@
 import GoldPrice from "./components/GoldPrice";
 import Newest from "./components/newest";
+import Weather from "./components/Weather";
 import Data from "./data/data";
 
 export default function Home() {
@@ -10,10 +11,14 @@ export default function Home() {
         <section className="mb-12">
           <GoldPrice />
         </section>
-        {/* Latest News Section */}
-        <section className="mb-12">
+
+        <section className="flex justify-center mb-12">
           <Newest />
+          <Weather />
         </section>
+
+        {/* Latest News Section */}
+        <section className="mb-12"></section>
         {/* News Grid Section */}
         <section className="grid md:grid-cols-2 gap-8 px-4">
           <div className="bg-white rounded-lg shadow-md p-6">
